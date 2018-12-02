@@ -12,11 +12,30 @@ class Course extends Component {
 		this.handleChangeTitle = this.handleChangeTitle.bind(this);
 		console.log("constructor");
 	}
+
 	componentWillMount(){
 		console.log("componentWillMount");
 	}
 	componentDidMount(){
 		console.log("componentdidMount");
+	}	
+	componentWillReceiveProps(){
+		console.log("componentWillReceiveProps");
+	}
+	shouldComponentUpdate(nextProps,nextState){
+		console.log("shouldComponentUpdate");
+		console.log(nextState);
+		
+		return true;
+	}
+	componentWillUpdate(){
+		console.log("componentWillUpdate");
+	}
+	componentDidUpdate(){
+		console.log("componentDidUpdate");
+	}
+	componentWillUnmount(){
+		console.log("componentWillUnmount");
 	}
 	handleChangeTitle(){
 		this.setState({

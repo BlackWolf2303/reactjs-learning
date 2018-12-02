@@ -36,8 +36,8 @@ class App extends Component {
 				<h1>App Component</h1>
 					<div className="row">
 					{elmCourses}
-					{/* <Lifecycle />
-						<Course name = "ReactJS" time="30h" free={true}/>
+					 <Lifecycle />
+					{/*	<Course name = "ReactJS" time="30h" free={true}/>
 						<Course name = "Angular 4x" time="45h" free={false}/>
 						<Course name = "NodeJS" time="60h" free={true}/>			 */}
 					</div>
