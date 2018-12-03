@@ -10,6 +10,7 @@ class List extends Component {
   render() { 
     const items = this.props.itemsApp;
     const elmItem = items.map((item,index) => {
+
       return (
           <Item key={index} item={item} index={index}/>
       );
@@ -38,5 +39,6 @@ class List extends Component {
           </div>
     );
   }
+
 }
 export default List;

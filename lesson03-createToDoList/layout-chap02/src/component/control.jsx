@@ -3,17 +3,18 @@ import Search from './control/search';
 import Sort from './control/sort';
 import Add from './control/add';
 class Control extends Component {
+
   render() {
     return (
       <div className="row">
         {/* SEARCH : START */}
-        <Search />
+        <Search stringSearch={this.props.stringSearch} onClickGo={this.props.onClickSearchGo}/>
         {/* SEARCH : END */}
         {/* SORT : START */}
         <Sort />
         {/* SORT : END */}
         {/* ADD : START */}
-        <Add />
+        <Add onClickAdd={this.props.onClickAdd} isShowForm={this.props.isShowForm}/>
         {/* ADD : END */}
       </div>
     );

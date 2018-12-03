@@ -36,7 +36,7 @@ class Form extends Component {
             <button type="button" className="btn btn-primary">
               Submit
             </button>
-            <button type="button" className="btn btn-default">
+            <button type="button" className="btn btn-default" onClick={this.props.onClickCancel}>
               Cancel
             </button>
           </form>

@@ -9,11 +9,6 @@ class Item extends Component {
     const {item} = this.props;
     const {index} = this.props;
 
-
-
-    console.log(item);
-
-
     return (
       <tr>
         <td className="text-center">{index+1}</td>
