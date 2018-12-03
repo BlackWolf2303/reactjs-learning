@@ -30,12 +30,13 @@ class App extends Component {
 		let elmCourses = items.map((item,index) =>
 			<Course key={index} name={item.name} time={item.time} free={item.free}>{item.desc}</Course>
 		);
-			elmCourses = null;
+			// elmCourses = null;
 		return (
 			<div className="App-content">
 				<h1>App Component</h1>
 					<div className="row">
 					{elmCourses}
+					{[1,65,65656565]} 
 					{/* <Lifecycle />
 						<Course name = "ReactJS" time="30h" free={true}/>
 						<Course name = "Angular 4x" time="45h" free={false}/>
