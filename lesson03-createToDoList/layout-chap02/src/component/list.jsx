@@ -9,10 +9,11 @@ class List extends Component {
  
   render() { 
     const items = this.props.itemsApp;
+    let {onClickDelete} = this.props;
     const elmItem = items.map((item,index) => {
 
       return (
-          <Item key={index} item={item} index={index}/>
+          <Item key={index} item={item} index={index} onClickDelete={onClickDelete}/>
       );
     });
 

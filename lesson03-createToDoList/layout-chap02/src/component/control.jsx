@@ -5,16 +5,18 @@ import Add from './control/add';
 class Control extends Component {
 
   render() {
+    let {stringSearch, onClickSearchGo, onClickAdd, isShowForm, orderBy, orderDir,onClickSort} = this.props;
+
     return (
       <div className="row">
         {/* SEARCH : START */}
-        <Search stringSearch={this.props.stringSearch} onClickGo={this.props.onClickSearchGo}/>
+        <Search stringSearch={stringSearch} onClickGo={onClickSearchGo}/>
         {/* SEARCH : END */}
         {/* SORT : START */}
-        <Sort />
+        <Sort orderBy={orderBy} orderDir={orderDir} onClickSort={onClickSort}/>
         {/* SORT : END */}
         {/* ADD : START */}
-        <Add onClickAdd={this.props.onClickAdd} isShowForm={this.props.isShowForm}/>
+        <Add onClickAdd={onClickAdd} isShowForm={isShowForm}/>
         {/* ADD : END */}
       </div>
     );

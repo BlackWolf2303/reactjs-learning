@@ -5,6 +5,10 @@ class Item extends Component {
     super(props);
     this.state = {};
   }
+
+  handleDelete(id){
+    this.props.onClickDelete(id);
+  }
   render() {
     const {item} = this.props;
     const {index} = this.props;
@@ -22,7 +26,7 @@ class Item extends Component {
           <button type="button" className="btn btn-warning">
             Edit
           </button>
-          <button type="button" className="btn btn-danger">
+          <button onClick={()=> this.handleDelete(item.id)} type="button" className="btn btn-danger">
             Delete
           </button>
         </td>

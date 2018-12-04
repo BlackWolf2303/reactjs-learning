@@ -20,6 +20,11 @@ let itemsData = [
       id  : uuidv4(),
       name: "Even when there are sad things around which depress your mind, there are a ton of beautiful reasons for you to stand up",
       level: 0 //0 small, 1 medium, 2 high
+    },
+    {
+      id  : uuidv4(),
+      name: "Evenasdsadadsafsddons for you to stand up",
+      level: 0 //0 small, 1 medium, 2 high
     }
   ]
 export default itemsData;
