@@ -4,18 +4,20 @@ import Control from "./component/control";
 import Form from "./component/form";
 import List from "./component/list";
 import {remove, filter, includes, sortBy as funcOrderBy} from "lodash";
-
 import itemsData from "./mocks/tasks";
+
+const uuidv4 = require('uuid/v4');
 
 class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
       items       : itemsData,
-      isShowForm  : true,
+      isShowForm  : false,
       stringSearch: "",
       orderBy     : "name",
-      orderDir    :"asc"
+      orderDir    :"asc",
+      itemEdit    : null
     };
 
     this.handleToggleForm = this.handleToggleForm.bind(this);
@@ -23,10 +25,12 @@ class App extends Component {
     this.handleSearch = this.handleSearch.bind(this);
     this.handleSort = this.handleSort.bind(this);
     this.handleDelete = this.handleDelete.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleEdit = this.handleEdit.bind(this);
   }
 
   handleToggleForm() {
-    this.setState({
+    this.setState({ 
       isShowForm: !this.state.isShowForm
     });
   }
@@ -56,6 +60,29 @@ class App extends Component {
       items: items
     });
   }
+
+handleSubmit(item){
+  console.log(item);
+  let {items} = this.state;
+  items.push({
+      id  : uuidv4(),
+      name: item.name,
+      level: +item.level //0 small, 1 medium, 2 high
+  });
+  this.setState({
+    items:items,
+    isShowForm: false
+  });
+  console.log(item);
+}
+
+handleEdit(item){
+
+  this.setState ({
+    itemEdit: item,
+    isShowForm: true
+  });
+}
 
   render() {
     let itemsOrigin     = this.state.items;
@@ -96,7 +123,7 @@ class App extends Component {
           {this.showForm(isShowForm)}
           {/* FORM : END */}
           {/* LIST : START */}
-          <List itemsApp={items} onClickDelete={this.handleDelete}/>
+          <List itemsApp={items} onClickDelete={this.handleDelete} onClickEdit={this.handleEdit}/>
           {/* LIST : END */}
         </div>
       </div>
@@ -106,7 +133,7 @@ class App extends Component {
   showForm(value) {
     let elmForm = null;
     if (value) {
-      elmForm = <Form onClickCancel={this.handleCloseForm} />;
+      elmForm = <Form itemEdit={this.state.itemEdit} onClickSubmit={this.handleSubmit} onClickCancel={this.handleCloseForm} />;
     }
     return elmForm;
   }
