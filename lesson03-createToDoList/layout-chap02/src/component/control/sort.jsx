@@ -24,18 +24,18 @@ class Sort extends Component {
           </button>
           <ul className="dropdown-menu" aria-labelledby="dropdownMenu1">
             <li>
-              <a href="#" role="button" onClick={()=>this.handleSort('name','asc')}>Name ASC</a>
+              <option role="button" onClick={()=>this.handleSort('name','asc')}>Name ASC</option>
               
             </li>
             <li>
-              <a href="#" role="button" onClick={()=>this.handleSort('name','desc')}>Name DESC</a>
+              <option role="button" onClick={()=>this.handleSort('name','desc')}>Name DESC</option>
             </li>
             <li role="separator" className="divider" />
             <li>
-              <a href="#" role="button" onClick={()=>this.handleSort('level','asc')}>Level ASC</a>
+              <option  role="button" onClick={()=>this.handleSort('level','asc')}>Level ASC</option>
             </li>
             <li>
-              <a href="#" role="button" onClick={()=>this.handleSort('level','desc')}>Level DESC</a>
+              <option role="button" onClick={()=>this.handleSort('level','desc')}>Level DESC</option>
             </li>
           </ul>
           <span className="label label-success label-medium">{stringSort}</span>

@@ -1,15 +1,38 @@
 import React, { Component } from "react";
-import { COPYFILE_FICLONE_FORCE } from "constants";
 class Form extends Component {
 constructor(props){
   super(props);
   this.state = {
+    id:"",
     name:"",
     level:""
   };
+
+
   this.handleChange = this.handleChange.bind(this);
   this.handleSubmit = this.handleSubmit.bind(this);
-  console.log(this.props.itemEdit);
+}
+
+componentWillMount(){
+  let item = this.props.itemEdit;
+  if(item.id !== "") {
+    this.setState({
+      id:item.id,
+      name:item.name,
+      level:item.level
+    });
+  }
+}
+
+componentWillReceiveProps(nextProps){
+  let item = nextProps.itemEdit;
+  if(item.id !== "") {
+    this.setState({
+      id:item.id,
+      name:item.name,
+      level:item.level
+    });
+  }
 }
 
 handleChange(event) {
@@ -25,6 +48,7 @@ handleChange(event) {
 
 handleSubmit(event) {
   let item = {
+    id: this.state.id,
     name: this.state.name,
     level: this.state.level,
   };
@@ -33,13 +57,7 @@ handleSubmit(event) {
 }
 
   render() {
-    let item = this.props.itemEdit;
-    let name = this.state.name;
-    let level = this.state.level;
-    if(item.name != "") {
-      name = item.name;
-      level= item.level;
-    }
+
     return (
       <div className="row">
         <div className="col-md-offset-7 col-md-5">
@@ -50,7 +68,7 @@ handleSubmit(event) {
               </label>
               <input
                 type="text"
-                value={name}
+                value={this.state.name}
                 onChange={this.handleChange}
                 name="name"
                 className="form-control"
@@ -62,7 +80,7 @@ handleSubmit(event) {
                 label
               </label>
               <select
-                value={level}
+                value={this.state.level}
                 onChange={this.handleChange}
                 name="level"
                 id="inputDs"
