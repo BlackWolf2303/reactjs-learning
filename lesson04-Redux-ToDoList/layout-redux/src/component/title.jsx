@@ -4,7 +4,7 @@ class Title extends Component {
     return (
       <div className="page-header">
         <h1>
-          Project 01 - ToDo List <small>ReactJS</small>
+          Project 02 - To Do List <small>ReactJS + Redux</small>
         </h1>
       </div>
     );
