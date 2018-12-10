@@ -1,12 +1,12 @@
 import { createStore } from 'redux';
 import appReducers from './reducers/index';
 import {actCloseForm, actOpenForm, actToggleForm,actSort} from './actions/index';
-import itemsData from "./mocks/tasks";
+
 
 
 const store = createStore(appReducers);
 
-
+store.subscribe(()=>console.log(store.getState()))
 //OPEN FORM
 store.dispatch(actCloseForm());
 // let action = {type: 'CLOSE_FORM'};
