@@ -6,8 +6,6 @@ import List from "./component/list";
 import {reject, remove, filter, includes, sortBy as funcOrderBy} from "lodash";
 import itemsData from "./mocks/tasks";
 
-import store from "./redux";
-
 const uuidv4 = require('uuid/v4');
 
 class App extends Component {
