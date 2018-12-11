@@ -1,14 +1,11 @@
 import React, { Component } from "react";
-class Add extends Component {
-  constructor(props){
-    super(props);
-    this.state = {
+import { connect } from 'react-redux';
 
-    };
-  }
+
+class Add extends Component {
 
   render() {
-    let {isShowForm} = this.props;
+    let {isShowForm} = this.props;     
     let showButton = null;
     if(isShowForm){
       showButton = <button type="button" className="btn btn-success btn-block" onClick={this.props.onClickAdd}>Close Task</button>; 
@@ -22,5 +19,9 @@ class Add extends Component {
     );
   }
 }
-
-export default Add;
+const mapStateToProps = state =>{
+  return {
+    isShowForm: state.isShowForm,
+  }
+}
+export default connect(mapStateToProps,null)(Add);

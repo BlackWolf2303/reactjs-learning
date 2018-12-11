@@ -1,4 +1,6 @@
 import React, { Component } from "react";
+import { connect } from 'react-redux';
+
 class Form extends Component {
 constructor(props){
   super(props);
@@ -13,16 +15,16 @@ constructor(props){
   this.handleSubmit = this.handleSubmit.bind(this);
 }
 
-componentWillMount(){
-  let item = this.props.itemEdit;
-  if(item.id !== "") {
-    this.setState({
-      id:item.id,
-      name:item.name,
-      level:item.level
-    });
-  }
-}
+// componentWillMount(){
+//   let item = this.props.itemEdit;
+//   if(item.id !== "") {
+//     this.setState({
+//       id:item.id,
+//       name:item.name,
+//       level:item.level
+//     });
+//   }
+// }
 
 componentWillReceiveProps(nextProps){
   let item = nextProps.itemEdit;
@@ -104,5 +106,9 @@ handleSubmit(event) {
     );
   }
 }
-
-export default Form;
+const mapStateToProps = state =>{
+  return {
+    isShowForm: state.isShowForm,
+  }
+}
+export default connect(mapStateToProps,null)(Form);

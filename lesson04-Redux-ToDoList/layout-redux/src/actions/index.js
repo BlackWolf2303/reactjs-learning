@@ -21,9 +21,10 @@ export const actToggleForm = () => {
 export const actSort = (orderBy,orderDir) => {
   return {
     type  : types.SORT_ITEM,
-    orderBy: orderBy,
-    orderDir: orderDir
-
+    sort:{
+      orderBy: orderBy,
+      orderDir: orderDir
+    }
   }
 }
 

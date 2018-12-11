@@ -1,10 +1,13 @@
 import React, { Component } from "react";
+import { connect } from 'react-redux';
+
 import Title from "./component/title";
 import Control from "./component/control";
 import Form from "./component/form";
 import List from "./component/list";
 import {reject, remove, filter, includes, sortBy as funcOrderBy} from "lodash";
-import itemsData from "./mocks/tasks";
+import itemsData from "./mocks/itemsData";
+import * as types from './constants/actionTypes';
 
 const uuidv4 = require('uuid/v4');
 
@@ -13,7 +16,7 @@ class App extends Component {
     super(props);
     this.state = {
       items       : itemsData,
-      isShowForm  : false,
+      // isShowForm  : false,
       stringSearch: "",
       orderBy     : "name",
       orderDir    :"asc",
@@ -30,15 +33,16 @@ class App extends Component {
   }
 
   handleToggleForm() {
-    this.setState({ 
-      isShowForm: !this.state.isShowForm,
-      itemEdit: ''
-    });
+    // this.setState({ 
+    //   isShowForm: !this.state.isShowForm,
+    //   itemEdit: ''
+    // });
+    var {dispatch} = this.props;
+    dispatch();  
   }
   handleCloseForm() {
-    this.setState({
-      isShowForm: !this.state.isShowForm
-    });
+    var {dispatch} = this.props;
+    dispatch({type:types.CLOSE_FORM});
   }
 
   handleSearch(value) {
@@ -100,14 +104,11 @@ handleEdit(item){
 
 
 
-  render() {
-
-
-    
-
+  render() {  
     let itemsOrigin     = this.state.items;
     let items           = [];
-    let {isShowForm, stringSearch, orderBy, orderDir}    = this.state;
+    let {isShowForm, stringSearch, orderBy, orderDir}    = this.props;
+
     
     items = filter(itemsOrigin, (item) => { return includes(item.name.toLowerCase(), stringSearch ); });
     items = funcOrderBy(items,[orderBy],[orderDir]);
@@ -123,6 +124,7 @@ handleEdit(item){
       // }
 
     return (
+      
       <div className="App">
         <div className="container">
           {/* TITLE : START */}
@@ -131,7 +133,7 @@ handleEdit(item){
           {/* CONTROL (SEARCH + SORT + ADD) : START */}
           <Control
             onClickAdd={this.handleToggleForm}
-            isShowForm={isShowForm}
+            // isShowForm={isShowForm}
             onClickSearchGo={this.handleSearch}
             orderBy={orderBy}
             orderDir={orderDir}
@@ -143,7 +145,7 @@ handleEdit(item){
           {this.showForm(isShowForm)}
           {/* FORM : END */}
           {/* LIST : START */}
-          <List itemsApp={items} onClickDelete={this.handleDelete} onClickEdit={this.handleEdit}/>
+          <List onClickDelete={this.handleDelete} onClickEdit={this.handleEdit}/>
           {/* LIST : END */}
         </div>
       </div>
@@ -159,4 +161,10 @@ handleEdit(item){
   }
 }
 
-export default App;
+const mapStateToProps = state =>{
+  
+  return {
+    isShowForm: state.isShowForm,
+  }
+}
+export default connect(mapStateToProps,null)(App);
