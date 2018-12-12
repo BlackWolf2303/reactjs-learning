@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import { connect } from 'react-redux';
+import * as types from './constants/actionTypes';
+import * as actions from './actions/indexAction';
 
 import Title from "./component/title";
 import Control from "./component/control";
@@ -7,7 +9,7 @@ import Form from "./component/form";
 import List from "./component/list";
 import {reject, remove, filter, includes, sortBy as funcOrderBy} from "lodash";
 import itemsData from "./mocks/itemsData";
-import * as types from './constants/actionTypes';
+
 
 const uuidv4 = require('uuid/v4');
 
@@ -33,16 +35,10 @@ class App extends Component {
   }
 
   handleToggleForm() {
-    // this.setState({ 
-    //   isShowForm: !this.state.isShowForm,
-    //   itemEdit: ''
-    // });
-    var {dispatch} = this.props;
-    dispatch({type:types.TOGGLE_FORM});  
+    this.props.actToggleForm();
   }
   handleCloseForm() {
-    var {dispatch} = this.props;
-    dispatch({type:types.CLOSE_FORM});
+    this.props.actCloseForm();
   }
 
   handleSearch(value) {
@@ -52,10 +48,8 @@ class App extends Component {
     }
 
   handleSort(orderBy,orderDir){
-    this.setState({
-      orderBy : orderBy,
-      orderDir: orderDir
-    });
+    var {dispatch} = this.props;
+    dispatch(actions.actSort(orderBy,orderDir));   
   }
 
   handleDelete(id){
@@ -161,10 +155,14 @@ handleEdit(item){
   }
 }
 
-const mapStateToProps = state =>{
+const mapStateToProps = state => {
   
   return {
     isShowForm: state.isShowForm,
   }
 }
-export default connect(mapStateToProps,null)(App);
+const mapDispatchToProps = {
+  actToggleForm: actions.actToggleForm,
+  actCloseForm: actions.actCloseForm,
+}
+export default connect(mapStateToProps,mapDispatchToProps)(App);
