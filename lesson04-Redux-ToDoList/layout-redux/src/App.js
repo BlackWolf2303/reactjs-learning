@@ -38,7 +38,7 @@ class App extends Component {
     //   itemEdit: ''
     // });
     var {dispatch} = this.props;
-    dispatch();  
+    dispatch({type:types.TOGGLE_FORM});  
   }
   handleCloseForm() {
     var {dispatch} = this.props;
