@@ -11,8 +11,8 @@ export const selectSong = {
   state: "",
 
   reducers: {
-    select(state) {
-      return state;
+    select(state, payload) {
+      return payload;
     }
   },
   effects: {

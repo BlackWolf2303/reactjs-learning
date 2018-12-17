@@ -2,6 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 
 const SongDetail = props => {
+  console.log(props);
   if (!props.song) {
     return <div>Select a Song</div>;
   } else
@@ -15,7 +16,11 @@ const SongDetail = props => {
     );
 };
 
+
+
 const mapStateToProps = state => {
-  return { song: state.selectedSong };
+  console.log(state);
+  
+  return { song: state.selectSong };
 };
 export default connect(mapStateToProps)(SongDetail);

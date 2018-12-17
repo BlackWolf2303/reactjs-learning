@@ -1,22 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-
 import { Provider } from 'react-redux';
-
-import { init } from '@rematch/core';
-import * as models from './models';
+import { createStore } from 'redux';
 
 import App from './components/App';
-
-const store = init({
-  models,
-});
-export const { getState, dispatch } = store;
-export default store;
-
+import reducers from './reducers';
 
 ReactDOM.render(
-  <Provider store={store}>
+  <Provider store={createStore(reducers)}>
   <App />
   </Provider>,
   document.querySelector('#root')
