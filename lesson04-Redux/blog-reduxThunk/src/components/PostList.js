@@ -15,7 +15,7 @@ class PostList extends Component {
 }
 
 const mapStateToProps = state => {
-    return console.log(state);
+    return state;
 }
 
 const actionCreator =  {
