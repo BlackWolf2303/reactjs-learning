@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Link, Redirect } from 'react-router-dom';
+import {Formik} from 'formik';
 
 import {fakeAuth} from './fakeAuth';
 
@@ -47,7 +48,40 @@ class SignInForm extends Component {
         <Redirect to='/protected'/>
       );
     }else {
+
+
+      
       return (
+        <Formik
+            initialValues={{ email: '', password: '' }}
+      validate={values => {
+        let errors = {};
+        if (!values.email) {
+          errors.email = 'Required';
+        } else if (
+          !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.email)
+        ) {
+          errors.email = 'Invalid email address';
+        }
+        return errors;
+      }}
+      onSubmit={(values, { setSubmitting }) => {
+        setTimeout(() => {
+          alert(JSON.stringify(values, null, 2));
+          setSubmitting(false);
+        }, 400);
+      }}
+        >
+        {({
+        values,
+        errors,
+        touched,
+        handleChange,
+        handleBlur,
+        handleSubmit,
+        isSubmitting,
+        /* and other goodies */
+      }) =>(
         <div className="FormCenter">
         <form className="FormFields" onSubmit={this.onSubmit}>
         <h3>Login to see protected!</h3>
@@ -89,6 +123,8 @@ class SignInForm extends Component {
           </div>
         </form>
       </div>
+      )}
+      </Formik>
       );
     }
   }
